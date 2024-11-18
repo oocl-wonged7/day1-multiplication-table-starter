@@ -10,6 +10,7 @@ public class MultiplicationTableBuilder {
         System.out.println("isNumbersInRange2To1000: " + builder.isNumbersInRange2To1000(startNumber, endNumber));
         System.out.println("getMultiplicationResult: " + builder.getMultiplicationResult(2, 3));
         System.out.println("getMultiplicationLine: " + builder.getMultiplicationLine(2, 4));
+        System.out.println("getMultiplicationTable:\n" + builder.generateMultiplicationTable(2, 4));
 //        System.out.println(multiplicationTable);
     }
 
@@ -41,4 +42,14 @@ public class MultiplicationTableBuilder {
         return multiplicationLine.toString();
     }
 
+    private static String generateMultiplicationTable(int startNumber, int endNumber) {
+        String multiplicationTable = "";
+        for (int i = startNumber; i <= endNumber; i++) {
+            if (i != startNumber) {
+                multiplicationTable += "\n";
+            }
+            multiplicationTable += getMultiplicationLine(startNumber, i);
+        }
+        return multiplicationTable.toString();
+    }
 }
