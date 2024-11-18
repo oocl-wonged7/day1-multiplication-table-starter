@@ -10,8 +10,7 @@ public class MultiplicationTableBuilder {
         System.out.println("isNumbersInRange2To1000: " + builder.isNumbersInRange2To1000(startNumber, endNumber));
         System.out.println("getMultiplicationResult: " + builder.getMultiplicationResult(2, 3));
         System.out.println("getMultiplicationLine: " + builder.getMultiplicationLine(2, 4));
-//        System.out.println("getMultiplicationTable:\n" + builder.generateMultiplicationTable(2, 4));
-//        System.out.println(multiplicationTable);
+
         builder.printMultiplicationTable(startNumber, endNumber);
     }
 
@@ -36,23 +35,16 @@ public class MultiplicationTableBuilder {
     }
 
     private static String getMultiplicationLine(int startNumber, int endNumber) {
-        int multiplier = endNumber;
-        String multiplicationLine = "";
-        for (int i = startNumber; i <= endNumber; i++) {
-            multiplicationLine += getMultiplicationResult(i, multiplier);
-            if (i != endNumber) {
-                multiplicationLine += " ";
-            }
-        }
-        return multiplicationLine.toString();
+        String multiplicationLine = java.util.stream.IntStream.rangeClosed(startNumber, endNumber)
+                .mapToObj(i -> getMultiplicationResult(i, endNumber))
+                .collect(java.util.stream.Collectors.joining(" "));
+        return multiplicationLine;
     }
 
     private static String generateMultiplicationTable(int startNumber, int endNumber) {
-        String multiplicationTable = "";
-        for (int i = startNumber; i <= endNumber; i++) {
-            multiplicationTable += getMultiplicationLine(startNumber, i);
-            multiplicationTable += "\n";
-        }
-        return multiplicationTable.toString();
+        String multiplicationTable = java.util.stream.IntStream.rangeClosed(startNumber, endNumber)
+                .mapToObj(i -> getMultiplicationLine(startNumber, i))
+                .collect(java.util.stream.Collectors.joining("\n"));
+        return multiplicationTable;
     }
 }
