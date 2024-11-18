@@ -8,6 +8,7 @@ public class MultiplicationTableBuilder {
         int endNumber = 4;
         System.out.println("isStartNumberNotBiggerThanEndNumber: " + builder.isStartNumberNotBiggerThanEndNumber(startNumber, endNumber));
         System.out.println("isNumbersInRange2To1000: " + builder.isNumbersInRange2To1000(startNumber, endNumber));
+        System.out.println("getMultiplicationResult: " + builder.getMultiplicationResult(2, 3));
 //        System.out.println(multiplicationTable);
     }
 
@@ -21,6 +22,10 @@ public class MultiplicationTableBuilder {
 
     private static boolean isNumbersInRange2To1000(int start, int end) {
         return (start > 1 && start <= 1000) && (end > 1 && end <= 1000);
+    }
+
+    private static String getMultiplicationResult(int inputNumber1, int inputNumber2) {
+        return inputNumber1 + "*" + inputNumber2 + "=" + inputNumber1 * inputNumber2;
     }
 
 }
