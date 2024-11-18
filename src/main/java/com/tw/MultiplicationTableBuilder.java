@@ -10,13 +10,18 @@ public class MultiplicationTableBuilder {
         System.out.println("isNumbersInRange2To1000: " + builder.isNumbersInRange2To1000(startNumber, endNumber));
         System.out.println("getMultiplicationResult: " + builder.getMultiplicationResult(2, 3));
         System.out.println("getMultiplicationLine: " + builder.getMultiplicationLine(2, 4));
-        System.out.println("getMultiplicationTable:\n" + builder.generateMultiplicationTable(2, 4));
+//        System.out.println("getMultiplicationTable:\n" + builder.generateMultiplicationTable(2, 4));
 //        System.out.println(multiplicationTable);
+        builder.printMultiplicationTable(startNumber, endNumber);
     }
 
-//    public String build(int start, int end) {
-//        return "";
-//    }
+    public String printMultiplicationTable(int startNumber, int endNumber) {
+        if (!isStartNumberNotBiggerThanEndNumber(startNumber, endNumber) || !isNumbersInRange2To1000(startNumber, endNumber)) {
+            return null;
+        }
+        System.out.println(generateMultiplicationTable(startNumber, endNumber));
+        return generateMultiplicationTable(startNumber, endNumber);
+    }
 
     private static boolean isStartNumberNotBiggerThanEndNumber(int startNumber, int endNumber) {
         return startNumber <= endNumber;
@@ -45,10 +50,8 @@ public class MultiplicationTableBuilder {
     private static String generateMultiplicationTable(int startNumber, int endNumber) {
         String multiplicationTable = "";
         for (int i = startNumber; i <= endNumber; i++) {
-            if (i != startNumber) {
-                multiplicationTable += "\n";
-            }
             multiplicationTable += getMultiplicationLine(startNumber, i);
+            multiplicationTable += "\n";
         }
         return multiplicationTable.toString();
     }
